@@ -26,4 +26,12 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Function used for hash password.
+     */
+    protected function setPasswordAttribute($pass)
+    {
+        $this->attributes['password'] = \Hash::make($pass);
+    }
 }

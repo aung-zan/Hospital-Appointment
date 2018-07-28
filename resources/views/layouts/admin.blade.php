@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Office Application</title>
+    <title>Reservation System</title>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
 
@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/vertical-menu.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/users.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/form-validation.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
 </head>
@@ -30,8 +31,8 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="navbar-brand" href="index.html">
-                          <h4 class="brand-text">Reservation System</h4>
+                        <a class="navbar-brand" href="{{ route('client.index') }}">
+                          <h5 class="brand-text">Reservation System</h5>
                         </a>
                     </li>
 
@@ -115,7 +116,7 @@
                         <li class="dropdown dropdown-user nav-item">
                             <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                                 <span class="avatar avatar-online">
-                                    <img src="{{ asset('/img/portrait/small/avatar-s-1.png') }}" alt="avatar"><i></i></span>
+                                    <img src="{{ asset('/img/github_acc_pic.png') }}" alt="avatar"><i></i></span>
                                 <span class="user-name">{{ Auth::user()->name }}</span>
                             </a>
 
@@ -153,46 +154,22 @@
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
-                <li class=" nav-item active">
+                <?php
+                    $route = Route::currentRouteName();
+                    $routeName = explode('.', $route);
+                 ?>
+
+                <li class=" nav-item {{ ($routeName[0] === 'client')? 'active':'' }}">
                     <a href="{{ route('client.index') }}">
                         <i class="ft-home"></i>
-                        <span class="menu-title" data-i18n="">Client</span>
-                        <span class="badge badge badge-primary badge-pill float-right mr-2">3</span>
+                        <span class="menu-title" data-i18n="">Clients</span>
                     </a>
                 </li>
 
                 <li class=" nav-item">
                     <a href="#">
-                        <i class="ft-monitor"></i>
-                        <span class="menu-title" data-i18n="">Templates</span>
-                    </a>
-
-                    <ul class="menu-content">
-                        <li>
-                            <a class="menu-item" href="dashboard-ecommerce.html">eCommerce</a>
-                        </li>
-
-                        <li>
-                            <a class="menu-item" href="dashboard-analytics.html">Analytics</a>
-                        </li>
-
-                        <li>
-                            <a class="menu-item" href="dashboard-fitness.html">Fitness</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class=" nav-item">
-                    <a href="#">
-                        <i class="ft-layout"></i>
-                        <span class="menu-title" data-i18n="">Layouts</span>
-                    </a>
-                </li>
-
-                <li class=" nav-item">
-                    <a href="#">
-                        <i class="ft-zap"></i>
-                        <span class="menu-title" data-i18n="">Starter kit</span>
+                        <i class="ft-alert-triangle"></i>
+                        <span class="menu-title" data-i18n="">Reports</span>
                         <span class="badge badge badge-danger badge-pill float-right mr-2">New</span>
                     </a>
                 </li>
@@ -207,6 +184,14 @@
 
     <script src="{{ asset('js/app-menu.js') }} " type="text/javascript"></script>
     <script src="{{ asset('js/app.js') }} " type="text/javascript"></script>
+
+    <!-- for validation -->
+        <script src="{{ asset('js/jqBootstrapValidation.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/icheck/icheck.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/spinner/jquery.bootstrap-touchspin.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/form-validation.js') }}" type="text/javascript"></script>
+    <!-- for validation -->
+
     <script src="{{ asset('js/custom.js') }} " type="text/javascript"></script>
 </body>
 </html>

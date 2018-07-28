@@ -16,7 +16,7 @@
   position: absolute;
   margin-top: 210px; }
   #user-profile .profile-with-cover .profil-cover-details .profile-image img.img-border {
-    border: 5px solid #fff; }
+    border: 5px solid #404e67; } /*updated*/
   #user-profile .profile-with-cover .profil-cover-details .card-title {
     color: #FFFFFF;
     text-shadow: 1px 1px 4px #1B2942; }

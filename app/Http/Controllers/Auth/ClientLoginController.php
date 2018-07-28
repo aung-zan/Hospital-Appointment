@@ -26,8 +26,14 @@ class ClientLoginController extends Controller
             'password'  => 'required|min:6',
         ]);
 
+        $credentials = array(
+            'email'         => $request->email,
+            'password'      => $request->password,
+            'deactivate'    => 0,
+        );
+
         // auth validation
-        if (Auth::guard('client')->attempt($request->only('email', 'password'))) {
+        if (Auth::guard('client')->attempt($credentials)) {
             return redirect()->route('schedule.index');
         }
 

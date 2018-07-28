@@ -21,7 +21,7 @@
 
                                 <div class="card-title text-center">
                                     <div class="p-1">
-                                        <img src="{{ asset('/img/myreservation_system_logo1.png') }}" alt="branding logo">
+                                        <img src="{{ asset('/img/myreservation_system_logo1.png') }}" alt="branding logo" class="img-position">
                                     </div>
                                 </div>
 
