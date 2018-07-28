@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Log, Auth;
+use Log, Auth, App\Admin;
 
 class AdminController extends Controller
 {
@@ -62,7 +62,9 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $admin = Admin::findOrFail($id);
+
+        return view('admin.edit', compact('admin'));
     }
 
     /**
@@ -74,7 +76,23 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $admin = Admin::findOrFail($id);
+
+        // input validation
+        $request->validate([
+            'username' => 'required',
+            'password' => 'nullable|min:6',
+        ]);
+
+        if ($request->password === null) {
+            $data = $request->except('password');
+        } else {
+            $data = $request->all();
+        }
+
+        $admin->update($data);
+
+        return redirect()->route('client.index');
     }
 
     /**

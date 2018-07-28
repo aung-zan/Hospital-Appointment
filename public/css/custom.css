@@ -6,7 +6,29 @@
     margin-top: 5%;
 }
 
-img {
+.img-position {
     width: 100%;
     height: auto;
+}
+
+.profile-pic-position {
+    margin-top: unset !important;
+}
+
+.profile-font-color {
+    color: black !important;
+    text-shadow: unset !important;
+}
+
+.action-icon-size {
+    font-size: 20px;
+}
+
+.action-icon-position {
+    margin-left: -4px;
+}
+
+.btn-outline-reservation {
+    border: 1px solid #00B5B8 !important;
+    color: #00B5B8;
 }

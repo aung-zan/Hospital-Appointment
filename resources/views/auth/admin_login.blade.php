@@ -47,7 +47,7 @@
 
                                 <div class="card-title text-center">
                                     <div class="p-1">
-                                        <img src="{{ asset('/img/myreservation_system_logo1.png') }}" alt="branding logo">
+                                        <img src="{{ asset('/img/myreservation_system_logo1.png') }}" alt="branding logo" class="img-position">
                                     </div>
                                 </div>
 
@@ -62,7 +62,8 @@
                                                     <input
                                                         type="text"
                                                         class="form-control form-control-lg"
-                                                        id="user-name" name="username"
+                                                        id="user-name"
+                                                        name="username"
                                                         placeholder="Your Username"
                                                         required
                                                         data-validation-required-message="This field is required"
