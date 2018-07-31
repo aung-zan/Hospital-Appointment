@@ -15,7 +15,7 @@ class Client extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'password', 'email',
+        'name', 'username', 'password', 'email', 'phone_number'
     ];
 
     /**

@@ -154,6 +154,32 @@
                                     </div>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-3 col-md-2">
+                                        <label class="label-position">Phone Number</label>
+                                    </div>
+
+                                    <div class="col-7 col-md-5">
+                                        <fieldset class="form-group has-icon-left">
+
+                                            <input
+                                                type="number"
+                                                name="phone_number"
+                                                class="form-control round"
+                                                placeholder="Phone number"
+                                                value="{{ old('phone_number') == null? $client->phone_number:old('phone_number') }}"
+                                            >
+                                            <div class="col-10">
+                                                <label style="color: red">Please insert the most use phone number.</label>
+                                            </div>
+
+                                            <div class="form-control-position">
+                                                <i class="ft-phone-call danger"></i>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+
                                 <div class="text-center">
                                     <button class="btn btn-success" type="submit"><i class="fa fa-check"></i> Update </button>
                                     <a href="{{ route('client.index') }}" class="btn btn-light"><i class="fa fa-arrow-left"></i> Back </a>

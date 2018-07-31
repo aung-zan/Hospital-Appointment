@@ -46,17 +46,15 @@
                     <div class="card-content">
                         <div class="card-body">
 
-                            <form method="POST" action="{{ route('client.store') }}" novalidate>
+                            <form method="POST" action="{{ route('client.store') }}" class="addForm" novalidate>
                                 @csrf
-
-                                <!-- <input type="hidden" name="_method" value="PATCH"> -->
 
                                 <div class="row">
                                     <div class="col-md-2 col-3">
                                         <label class="label-position">Username</label>
                                     </div>
 
-                                    <div class="col-md-5 col-9">
+                                    <div class="col-md-5 col-7">
                                         <fieldset class="form-group has-icon-left">
                                             <div class="controls">
 
@@ -65,14 +63,14 @@
                                                     class="form-control round"
                                                     name="username"
                                                     id="user-name"
-                                                    placeholder="Your username"
+                                                    placeholder="Username"
                                                     required
                                                     data-validation-required-message="This field is required"
                                                     value="{{ old('username') }}"
                                                 >
 
                                                 <div class="form-control-position">
-                                                    <i class="ft-lock warning"></i>
+                                                    <i class="ft-lock danger"></i>
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -84,7 +82,7 @@
                                         <label class="label-position">Name</label>
                                     </div>
 
-                                    <div class="col-md-5 col-9">
+                                    <div class="col-md-5 col-7">
                                         <fieldset class="form-group has-icon-left">
 
                                             <input
@@ -92,12 +90,12 @@
                                                 class="form-control round"
                                                 name="name"
                                                 id="user-username"
-                                                placeholder="Your name"
+                                                placeholder="Name"
                                                 value="{{ old('name') }}"
                                             >
 
                                             <div class="form-control-position">
-                                                <i class="ft-user warning"></i>
+                                                <i class="ft-user danger"></i>
                                             </div>
                                         </fieldset>
                                     </div>
@@ -108,7 +106,7 @@
                                         <label class="label-position">Email</label>
                                     </div>
 
-                                    <div class="col-md-5 col-9">
+                                    <div class="col-md-5 col-7">
                                         <fieldset class="form-group has-icon-left">
                                             <div class="controls">
 
@@ -117,14 +115,14 @@
                                                     class="form-control round"
                                                     name="email"
                                                     id="user-email"
-                                                    placeholder="Your email"
+                                                    placeholder="Email"
                                                     required
                                                     data-validation-required-message="This field is required"
                                                     value="{{ old('email') }}"
                                                 >
 
                                                 <div class="form-control-position">
-                                                    <i class="ft-mail warning"></i>
+                                                    <i class="ft-mail danger"></i>
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -136,7 +134,7 @@
                                         <label class="label-position">Password</label>
                                     </div>
 
-                                    <div class="col-md-5 col-9">
+                                    <div class="col-md-5 col-7">
                                         <fieldset class="form-group has-icon-left">
 
                                             <input
@@ -144,11 +142,31 @@
                                                 class="form-control round"
                                                 name="password"
                                                 id="user-password"
-                                                placeholder="Your password"
+                                                placeholder="Password"
                                             >
 
                                             <div class="form-control-position">
-                                                <i class="ft-log-in warning"></i>
+                                                <i class="ft-log-in danger"></i>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-3 col-md-2">
+                                        <label class="label-position">Phone Number</label>
+                                    </div>
+
+                                    <div class="col-7 col-md-5">
+                                        <fieldset class="form-group has-icon-left">
+
+                                            <input type="number" name="phone_number" class="form-control round" placeholder="Phone number">
+                                            <div class="col-10">
+                                                <label style="color: red">Please insert the most use phone number.</label>
+                                            </div>
+
+                                            <div class="form-control-position">
+                                                <i class="ft-phone-call danger"></i>
                                             </div>
                                         </fieldset>
                                     </div>
