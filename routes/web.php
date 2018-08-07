@@ -11,10 +11,6 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 
 // admin site routes
 Route::prefix('admin')->group(function() {
@@ -38,5 +34,10 @@ Route::post('/logout', 'Auth\ClientLoginController@logout')                     
 
 Route::resource('/profile', 'ClientProfileController', ['only' => ['edit', 'update']]);
 
-Route::resource('/schedule', 'ScheduleController', ['except' => ['show']]);
+Route::resource('/schedule', 'ScheduleController');
+Route::match(['PUT', 'PATCH'], '/schedule/complete/{schedule}', 'ScheduleController@complete')          ->name('schedule.complete');
+Route::match(['PUT', 'PATCH'], '/schedule/confirm/{schedule}', 'ScheduleController@confirm')            ->name('schedule.confirm');
+
+Route::resource('/doctor', 'DoctorController', ['except' => ['show']]);
+Route::resource('/department', 'DepartmentController', ['except' => ['show']]);
 

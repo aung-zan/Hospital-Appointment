@@ -18,9 +18,38 @@ $(document).ready(function() {
         $(this).next().submit();
     });
 
-    // for logout function
+    // for delete function
     $('.deleteButton').on('click', function(e) {
         e.preventDefault();
-        $('#deleteForm').submit();
+        $('.deleteForm').submit();
+    });
+
+    // select2 for doctor index page.
+    $('.select2-doctor-index').select2({
+        placeholder:'Search With Department',
+    });
+    $('.select2-doctor-index').on('select2:select', function(e) {
+        var id = e.params.data['id'];
+
+        $('#departmentSearch').val(id);
+        $('#departmentSearch').parent().submit();
+    });
+
+    // select2 for schedule add page.
+    $('.select2-schedule-index').select2({
+        placeholder:'Please Choose Doctor Name'
+    });
+
+    // datetimepicker for schedule index page.
+    $('.dateTimePicker').datetimepicker({
+        format: 'YYYY-MM-DD',
+    });
+    $('.dateTimePicker').on('dp.hide', function(e) {
+        $('#dateTimeForm').submit();
+    });
+
+    // datetimepicker for schedule add page.
+    $('#dateTimePicker2').datetimepicker({
+        format:'YYYY-MM-DD',
     });
 });
