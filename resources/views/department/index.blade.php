@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.client')
 
 @section('content')
 
@@ -7,7 +7,7 @@
 
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title mb-0">Clients</h3>
+                    <h3 class="content-header-title mb-0">Departments</h3>
                 </div>
             </div>
 
@@ -49,12 +49,17 @@
                                             </form>
                                         </div>
 
-                                        <!-- add new client -->
+                                        <!-- add new department -->
                                         <div class="col-7 col-md-8">
                                             <div class="text-right">
-                                                <a href="{{ route('client.create') }}" class="btn btn-social width-200 btn-outline-reservation">
-                                                    <span class="ft-user-plus font-medium-4"></span>
-                                                    Create New Client
+                                                <a
+                                                    href="{{ route('department.create') }}"
+                                                    class="btn btn-outline-dark"
+                                                    data-toggle="tooltip"
+                                                    data-placement="top"
+                                                    data-original-title="Create New Department"
+                                                >
+                                                    <i class="fa fa-building-o font-medium-4"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -62,28 +67,26 @@
 
                                     <br>
 
-                                    <!-- table client list -->
+                                    <!-- table department list -->
                                     <div class="table-responsive">
 
                                         <table class="table table-lg table-striped">
                                             <thead class="bg-primary">
                                                 <tr>
-                                                    <th>Username</th>
+                                                    <th>No.</th>
                                                     <th>Name</th>
-                                                    <th>Email</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
-                                                 @foreach ($clients as $key => $value)
+                                                 @foreach ($department as $key => $value)
                                                     <tr>
-                                                        <td>{{ $value['username'] }}</td>
+                                                        <td>{{ $value['id'] }}</td>
                                                         <td>{{ $value['name'] }}</td>
-                                                        <td>{{ $value['email'] }}</td>
                                                         <td>
-                                                            <!-- client edit -->
-                                                            <a href="{{ route('client.edit', $value['id']) }}">
+                                                            <!-- department edit -->
+                                                            <a href="{{ route('department.edit', $value['id']) }}">
                                                                 <i
                                                                     data-toggle="tooltip"
                                                                     data-placement="top"
@@ -92,8 +95,8 @@
                                                                 ></i>
                                                             </a>
 
-                                                            <!-- client delete -->
-                                                            <a href="{{ route('client.destroy', $value['id']) }}" class="deleteButton">
+                                                            <!-- department delete -->
+                                                            <a href="{{ route('department.destroy', $value['id']) }}" class="deleteButton">
                                                                 <i
                                                                     data-toggle="tooltip"
                                                                     data-placement="top"
@@ -102,45 +105,8 @@
                                                                 ></i>
                                                             </a>
 
-                                                            <!-- client activate or deactivate -->
-                                                            @if ($value['deactivate'] == 0)
-
-                                                                <!-- client deactivate -->
-                                                                <a href="{{ route('client.deactivate', $value['id']) }}" class="clientAD">
-                                                                    <i
-                                                                        data-toggle="tooltip"
-                                                                        data-placement="top"
-                                                                        data-original-title="Deactivate"
-                                                                        class="ft-user-x action-icon-size"
-                                                                    ></i>
-                                                                </a>
-                                                                <form method="POST" action="{{ route('client.deactivate', $value['id']) }}">
-                                                                    @csrf
-
-                                                                    <input type="hidden" name="_method" value="PATCH">
-                                                                </form>
-
-                                                            @else
-
-                                                                <!-- client activate -->
-                                                                <a href="{{ route('client.activate', $value['id']) }}" class="clientAD">
-                                                                    <i
-                                                                        data-toggle="tooltip"
-                                                                        data-placement="top"
-                                                                        data-original-title="Activate"
-                                                                        class="ft-user-check action-icon-size"
-                                                                    ></i>
-                                                                </a>
-                                                                <form method="POST" action="{{ route('client.activate', $value['id']) }}">
-                                                                    @csrf
-
-                                                                    <input type="hidden" name="_method" value="PATCH">
-                                                                </form>
-
-                                                            @endif
-
-                                                            <!-- client delete form -->
-                                                            <form method="POST" action="{{ route('client.destroy', $value['id']) }}" class="deleteForm">
+                                                            <!-- department delete form -->
+                                                            <form method="POST" action="{{ route('department.destroy', $value['id']) }}" class="deleteForm">
                                                                 @csrf
 
                                                                 <input type="hidden" name="_method" value="DELETE">

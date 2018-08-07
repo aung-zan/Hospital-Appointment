@@ -1,0 +1,217 @@
+@extends('layouts.client')
+
+@section('content')
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-header row"></div>
+
+            <div class="content-body">
+
+                <!-- input validation error message -->
+                @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissable mb-1" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">x</span>
+                        </button>
+                        <ul role="alert">
+                            @foreach ($errors->all() as $error)
+                                <li>
+                                    {{ $error }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <!-- update successful message -->
+                @if (Session::has('success'))
+                    <div class="alert alert-success alert-dismissable mb-1" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">x</span>
+                        </button>
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
+
+                <!-- profile image and background -->
+                <div id="user-profile">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card profile-with-cover">
+
+                                <div class="card-img-top img-fluid bg-cover height-100">
+                                </div>
+
+                                <div class="media profil-cover-details w-100 profile-pic-position">
+
+                                    <div class="media-left pl-2 pt-2">
+                                        <a href="#" class="profile-image" id="profileImage">
+                                            <img src="{{ asset('/img/github_acc_pic.png') }}" class="rounded-circle img-border height-100" alt="Card image">
+                                        </a>
+                                        <input type="file" id="profileImageUpload" style="display:none" accept="image/*">
+                                    </div>
+
+                                    <div class="media-body pt-3 px-2">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h3 class="card-title profile-font-color">{{ $profile->name }}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- update information -->
+                <div class="card">
+                    <div class="card-header"></div>
+
+                    <div class="card-content">
+                        <div class="card-body">
+
+                            <form method="POST" action="{{ route('profile.update', $profile->id) }}" novalidate>
+                                @csrf
+
+                                <input type="hidden" name="_method" value="PATCH">
+
+                                <input type="hidden" name="username" value="{{ $profile->username }}">
+
+                                <div class="row">
+                                    <div class="col-md-2 col-3">
+                                        <label class="label-position">Username</label>
+                                    </div>
+
+                                    <div class="col-md-5 col-9">
+                                        <fieldset class="form-group has-icon-left">
+                                            <div class="controls">
+
+                                                <input
+                                                    type="text"
+                                                    class="form-control round"
+                                                    name="username"
+                                                    id="user-name"
+                                                    placeholder="Your username"
+                                                    required
+                                                    data-validation-required-message="This field is required"
+                                                    value="{{ $profile->username }}"
+                                                    disabled
+                                                >
+
+                                                <div class="form-control-position">
+                                                    <i class="ft-lock warning"></i>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-2 col-3">
+                                        <label class="label-position">Name</label>
+                                    </div>
+
+                                    <div class="col-md-5 col-9">
+                                        <fieldset class="form-group has-icon-left">
+
+                                            <input
+                                                type="text"
+                                                class="form-control round"
+                                                name="name"
+                                                id="name"
+                                                placeholder="Your name"
+                                                value="{{ old('name') == null? $profile->name:old('name') }}"
+                                            >
+
+                                            <div class="form-control-position">
+                                                <i class="ft-user warning"></i>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-2 col-3">
+                                        <label class="label-position">Email</label>
+                                    </div>
+
+                                    <div class="col-md-5 col-9">
+                                        <fieldset class="form-group has-icon-left">
+
+                                            <input
+                                                type="email"
+                                                class="form-control round"
+                                                name="email"
+                                                id="email"
+                                                placeholder="Email"
+                                                value="{{ old('email') == null? $profile->email:old('email') }}"
+                                            >
+
+                                            <div class="form-control-position">
+                                                <i class="ft-mail warning"></i>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-2 col-3">
+                                        <label class="label-position">Password</label>
+                                    </div>
+
+                                    <div class="col-md-5 col-9">
+                                        <fieldset class="form-group has-icon-left">
+
+                                            <input
+                                                type="password"
+                                                class="form-control round"
+                                                name="password"
+                                                id="iconLeft10"
+                                                placeholder="Your password"
+                                            >
+
+                                            <div class="form-control-position">
+                                                <i class="ft-log-in warning"></i>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-2 col-3">
+                                        <label class="label-position">Phone Number</label>
+                                    </div>
+
+                                    <div class="col-md-5 col-9">
+                                        <fieldset class="form-group has-icon-left">
+
+                                            <input
+                                                type="number"
+                                                class="form-control round"
+                                                name="phone_number"
+                                                id="phone_number"
+                                                placeholder="Phone Number"
+                                                value="{{ old('phone_number') == null? $profile->phone_number:old('phone_number') }}"
+                                            >
+
+                                            <div class="form-control-position">
+                                                <i class="ft-phone warning"></i>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button class="btn btn-success" type="submit"><i class="fa fa-check"></i> Update </button>
+                                    <a href="{{ route('schedule.index') }}" class="btn btn-light"><i class="fa fa-arrow-left"></i> Back </a>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

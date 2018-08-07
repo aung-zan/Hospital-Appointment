@@ -161,7 +161,7 @@
                 <?php
                     $route = Route::currentRouteName();
                     $routeName = explode('.', $route);
-                 ?>
+                ?>
 
                 <li class=" nav-item {{ ($routeName[0] === 'client')? 'active':'' }}">
                     <a href="{{ route('client.index') }}">
@@ -170,7 +170,7 @@
                     </a>
                 </li>
 
-                <li class=" nav-item">
+                <li class=" nav-item {{ ($routeName[0] === 'report')? 'active':'' }}">
                     <a href="#">
                         <i class="ft-alert-triangle"></i>
                         <span class="menu-title" data-i18n="">Reports</span>

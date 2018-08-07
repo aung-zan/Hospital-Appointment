@@ -62,7 +62,9 @@ class ClientProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $profile = Client::findOrFail($id);
+
+        return view('client_profile.edit', compact('profile'));
     }
 
     /**
@@ -74,7 +76,25 @@ class ClientProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $profile = Client::findOrFail($id);
+
+        // input vaidation
+        $request->validate([
+            'username'  => 'required',
+            'email'     => 'required|email',
+            'password'  => 'nullable|min:6',
+        ]);
+
+        if ($request->password === null) {
+            $data = $request->except('password');
+        } else {
+            $data = $request->all();
+        }
+
+        $profile->update($data);
+
+        return redirect()->route('profile.edit', compact('profile'))
+                        ->with('success', 'The Profile has been updated.');
     }
 
     /**

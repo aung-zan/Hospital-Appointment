@@ -1,7 +1,3 @@
-/*html, body {
-    background-color: #23242A !important;
-}*/
-
 .label-position {
     margin-top: 5%;
 }
@@ -31,4 +27,12 @@
 .btn-outline-reservation {
     border: 1px solid #00B5B8 !important;
     color: #00B5B8;
+}
+
+.select2-selection__rendered{
+    padding-left: 30px !important;
+}
+
+.schedule_td_center {
+    text-align: center;
 }
