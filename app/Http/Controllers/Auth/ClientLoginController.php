@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Log, Auth;
+use Log, Auth, App\Client;
 
 class ClientLoginController extends Controller
 {
@@ -35,6 +35,12 @@ class ClientLoginController extends Controller
         // auth validation
         if (Auth::guard('client')->attempt($credentials)) {
             return redirect()->route('schedule.index');
+        }
+
+        if (Client::where('email', $credentials['email'])->where('deactivate', 1)->exists()) {
+            return redirect()->back()
+                            ->withInput($request->only('email'))
+                            ->with('error', 'Your account is deactivated.');
         }
 
         return redirect()->back()
