@@ -32,7 +32,7 @@
 
                                         <!-- search box -->
                                         <div class="col-5 col-md-4">
-                                            <form method="GET" action="{{ route('client.index') }}">
+                                            <form method="GET" action="{{ route('department.index') }}">
 
                                                 <div class="input-group">
                                                     <div class="input-group-prepend" id="button-addon2">
