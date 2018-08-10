@@ -31,9 +31,9 @@ class DepartmentController extends Controller
             });
         }
 
-        $department = $query->paginate(5);
+        $departments = $query->paginate(5);
 
-        return view('department.index', compact('department', 'search'));
+        return view('department.index', compact('departments', 'search'));
     }
 
     /**

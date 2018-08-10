@@ -53,9 +53,12 @@ class DoctorController extends Controller
      */
     public function create()
     {
+        // get days from constant.php
+        $days = Config('constant.days');
+
         $departments = Department::orderBy('name')->pluck('id', 'name');
 
-        return view('doctor.add', compact('departments'));
+        return view('doctor.add', compact('departments', 'days'));
     }
 
     /**
@@ -66,11 +69,7 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'department_id'     => 'required',
-            'name'              => 'required',
-            'about'             => 'required',
-        ]);
+        $this->validation($request);
 
         Doctor::create($request->all());
 
@@ -97,10 +96,12 @@ class DoctorController extends Controller
      */
     public function edit($id)
     {
+        // get days from constant.php
+        $days = Config('constant.days');
         $doctor = Doctor::findOrFail($id);
         $departments = Department::orderBy('name')->pluck('id', 'name');
 
-        return view('doctor.edit', compact('doctor', 'departments'));
+        return view('doctor.edit', compact('doctor', 'departments', 'days'));
     }
 
     /**
@@ -114,11 +115,7 @@ class DoctorController extends Controller
     {
         $doctor = Doctor::findOrFail($id);
 
-        $request->validate([
-            'department_id'     => 'required',
-            'name'              => 'required',
-            'about'             => 'required',
-        ]);
+        $this->validation($request);
 
         $doctor->update($request->all());
 
@@ -135,5 +132,24 @@ class DoctorController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Validate the input request.
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function validation(Request $request)
+    {
+        return $request->validate([
+            'department_id'     => 'required',
+            'name'              => 'required',
+            'about'             => 'required',
+            'date_from'         => 'required',
+            'date_to'           => 'required',
+            'start_time'        => 'required',
+            'end_time'          => 'required',
+        ]);
     }
 }

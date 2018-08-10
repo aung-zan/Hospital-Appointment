@@ -122,9 +122,8 @@
 
                                                 <input
                                                     type="text"
-                                                    class="form-control round"
+                                                    class="form-control dateTimePicker2 round"
                                                     name="appointment_time"
-                                                    id="dateTimePicker2"
                                                     placeholder="Appointment Date"
                                                     value="{{ old('appointment_time') == null? $date:old('appointment_time') }}"
                                                     data-validation-required-message="This field is required"
