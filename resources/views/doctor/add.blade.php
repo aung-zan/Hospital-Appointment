@@ -124,8 +124,8 @@
                                                     type="text"
                                                     class="form-control round"
                                                     name="about"
-                                                    id="user-username"
-                                                    placeholder="Example: His degree"
+                                                    id="user-about"
+                                                    placeholder="Example: His/Her degree"
                                                     value="{{ old('about') }}"
                                                     data-validation-required-message="This field is required"
                                                     required
@@ -139,6 +139,94 @@
                                         </fieldset>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-md-2 col-3">
+                                        <label class="label-position">Date</label>
+                                    </div>
+
+                                    <div class="col-md-2 col-sm-2 col-4">
+                                        <fieldset class="form-group has-icon-left">
+                                            <div class="controls">
+
+                                                <select class="form-control" name="date_from">
+                                                    <option value=" ">Select Date</option>
+                                                    @foreach ($days as $key => $value)
+                                                        <option value="{{ $key }}" {{ old('date_from') == $key? 'selected':'' }}>{{ $value }}</option>
+                                                    @endforeach
+                                                </select>
+
+                                            </div>
+                                        </fieldset>
+                                    </div>
+
+                                    <label class="mid-label-position">To</label>
+
+                                    <div class="col-md-2 col-sm-2 col-4">
+                                        <fieldset class="form-group has-icon-left">
+                                            <div class="controls">
+
+                                                <select class="form-control" name="date_to">
+                                                    <option value=" ">Select Date</option>
+                                                    @foreach ($days as $key => $value)
+                                                        <option value="{{ $key }}" {{ old('date_to') == $key? 'selected':'' }}>{{ $value }}</option>
+                                                    @endforeach
+                                                </select>
+
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-2 col-3">
+                                        <label class="label-position">Time</label>
+                                    </div>
+
+                                    <div class="col-md-3 col-5">
+                                        <div class="input-group">
+
+                                            <div class="input-group-prepend" id="button-addon1">
+                                                <span class="input-group-text">
+                                                    <span class="ft-clock"></span>
+                                                </span>
+                                            </div>
+
+                                            <input
+                                                type="text"
+                                                name="start_time"
+                                                class="form-control dateTimePicker3"
+                                                placeholder="Choose Time"
+                                                value="{{ old('start_time') }}"
+                                            >
+
+                                        </div>
+                                    </div>
+
+                                    <label class="mid-label-position">To</label>
+
+                                    <div class="col-md-3 col-5">
+                                        <div class="input-group">
+
+                                            <div class="input-group-prepend" id="button-addon2">
+                                                <span class="input-group-text">
+                                                    <span class="ft-clock"></span>
+                                                </span>
+                                            </div>
+
+                                            <input
+                                                type="text"
+                                                name="end_time"
+                                                class="form-control dateTimePicker3"
+                                                placeholder="Choose Time"
+                                                value="{{ old('end_time') }}"
+                                            >
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br>
 
                                 <div class="text-center">
                                     <button class="btn btn-success" type="submit"><i class="fa fa-check"></i> Save </button>

@@ -80,7 +80,7 @@
                                             </thead>
 
                                             <tbody>
-                                                 @foreach ($department as $key => $value)
+                                                 @foreach ($departments as $key => $value)
                                                     <tr>
                                                         <td>{{ $value['id'] }}</td>
                                                         <td>{{ $value['name'] }}</td>
@@ -116,8 +116,9 @@
                                                  @endforeach
                                             </tbody>
                                         </table>
-
                                     </div>
+
+                                    {{ $departments->links() }}
                                 </div>
                             </div>
                         </div>

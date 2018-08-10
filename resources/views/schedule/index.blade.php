@@ -144,6 +144,8 @@
                                             </tbody>
                                         </table>
                                     </div>
+
+                                    {{ $doctors->links() }}
                                 </div>
                             </div>
                         </div>

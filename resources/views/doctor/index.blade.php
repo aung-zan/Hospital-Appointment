@@ -35,7 +35,7 @@
                                             <form method="GET" action="{{ route('doctor.index') }}">
 
                                                 <div class="input-group">
-                                                    <div class="input-group-prepend" id="button-addon2">
+                                                    <div class="input-group-prepend" id="button-addon1">
                                                         <button class="btn btn-primary" type="submit"><i class="ft-search"></i></button>
                                                     </div>
                                                     <input
@@ -71,7 +71,7 @@
                                         </div>
 
                                         <!-- add new doctor -->
-                                        <div class="col-3 col-md-6">
+                                        <div class="col-2 col-sm-1 col-md-6">
                                             <div class="text-right">
                                                 <a
                                                     href="{{ route('doctor.create') }}"
@@ -96,6 +96,8 @@
                                                 <tr>
                                                     <th>Doctor Name</th>
                                                     <th>Department</th>
+                                                    <th>Days</th>
+                                                    <th>Time</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -105,6 +107,8 @@
                                                     <tr>
                                                         <td>{{ $value['name'] }}</td>
                                                         <td>{{ $value['department']['name'] }}</td>
+                                                        <td>{{ $value['date_from'] }} - {{ $value['date_to'] }}</td>
+                                                        <td>{{ $value['start_time'] }} - {{ $value['end_time'] }}</td>
                                                         <td>
                                                             <!-- doctor edit -->
                                                             <a href="{{ route('doctor.edit', $value['id']) }}">
@@ -137,8 +141,9 @@
                                                  @endforeach
                                             </tbody>
                                         </table>
-
                                     </div>
+
+                                    {{ $doctors->links() }}
                                 </div>
                             </div>
                         </div>
