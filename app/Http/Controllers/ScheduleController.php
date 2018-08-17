@@ -185,7 +185,7 @@ class ScheduleController extends Controller
     }
 
     /**
-     * Modify the status resource in storage.
+     * Modify the status resource in storage. (confrim = 1)
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -205,7 +205,7 @@ class ScheduleController extends Controller
     }
 
     /**
-     * Modify the status resource in storage.
+     * Modify the status resource in storage. (complete = 2)
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -221,5 +221,24 @@ class ScheduleController extends Controller
 
         return redirect()->route('schedule.show', $doctor['id'])
                         ->with('success', 'The Appointment has been completed.');
+    }
+
+    /**
+     * Modify the status resource in storage. (cancel = 3)
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function cancel($id)
+    {
+        $schedule = Schedule::findOrFail($id);
+
+        $schedule->status = 3;
+        $schedule->save();
+
+        $doctor['id'] = $schedule['doctor_id'];
+
+        return redirect()->route('schedule.show', $doctor['id'])
+                        ->with('success', 'The Appointment has been canceled.');
     }
 }

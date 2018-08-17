@@ -37,6 +37,7 @@ Route::resource('/profile', 'ClientProfileController', ['only' => ['edit', 'upda
 Route::resource('/schedule', 'ScheduleController');
 Route::match(['PUT', 'PATCH'], '/schedule/complete/{schedule}', 'ScheduleController@complete')          ->name('schedule.complete');
 Route::match(['PUT', 'PATCH'], '/schedule/confirm/{schedule}', 'ScheduleController@confirm')            ->name('schedule.confirm');
+Route::match(['PUT', 'PATCH'], '/schedule/cancel/{schedule}', 'ScheduleController@cancel')            ->name('schedule.cancel');
 
 Route::resource('/doctor', 'DoctorController', ['except' => ['show']]);
 Route::resource('/department', 'DepartmentController', ['except' => ['show']]);
