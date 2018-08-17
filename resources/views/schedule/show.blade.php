@@ -77,13 +77,17 @@
                                                         <td class="schedule_td_center">{{ $value['phone_number'] }}</td>
                                                         <td class="schedule_td_center">{{ $value['email'] }}</td>
                                                         <td class="schedule_td_center">
+
                                                             @if ($value['status'] === 0)
-                                                                <p class="text-danger">Pending</p>
+                                                                <p class="text-warning">Pending</p>
                                                             @elseif ($value['status'] === 1)
-                                                                <p class="text-warning">Confirm</p>
-                                                            @else
+                                                                <p class="text-primary">Confirm</p>
+                                                            @elseif ($value['status'] === 2)
                                                                 <p class="text-success">Complete</p>
+                                                            @else
+                                                                <p class="red">Cancel</p>
                                                             @endif
+
                                                         </td>
                                                         <td>
 
@@ -115,6 +119,21 @@
                                                                     <input type="hidden" name="_method" value="PATCH">
                                                                 </form>
 
+                                                                <!-- schedule cancel -->
+                                                                <a href="{{ route('schedule.cancel', $value['id']) }}" class="clientAD">
+                                                                    <i
+                                                                        data-toggle="tooltip"
+                                                                        data-placement="top"
+                                                                        data-original-title="Cancel"
+                                                                        class="ft-trash-2 action-icon-size action-icon-position"
+                                                                    ></i>
+                                                                </a>
+                                                                <form method="POST" action="{{ route('schedule.cancel', $value['id']) }}">
+                                                                    @csrf
+
+                                                                    <input type="hidden" name="_method" value="PATCH">
+                                                                </form>
+
                                                             @elseif ($value['status'] == 1)
 
                                                                 <!-- for schedule complete -->
@@ -134,20 +153,6 @@
 
                                                             @endif
 
-                                                            <!-- schedule delete -->
-                                                            <a href="{{ route('schedule.destroy', $value['id']) }}" class="deleteButton">
-                                                                <i
-                                                                    data-toggle="tooltip"
-                                                                    data-placement="top"
-                                                                    data-original-title="Delete"
-                                                                    class="ft-trash-2 action-icon-size action-icon-position"
-                                                                ></i>
-                                                            </a>
-                                                            <form method="POST" action="{{ route('schedule.destroy', $value['id']) }}" class="deleteForm">
-                                                                @csrf
-
-                                                                <input type="hidden" name="_method" value="DELETE">
-                                                            </form>
                                                         </td>
                                                     </tr>
                                                  @endforeach
